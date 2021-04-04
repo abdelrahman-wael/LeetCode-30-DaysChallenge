@@ -9,7 +9,7 @@ class MyCircularQueue:
         
 
     def enQueue(self, value: int) -> bool:
-        if self.available == 0:
+        if self.isFull():
             return False
         self.rear = (self.rear + 1) % self.maxLen
         self.available -= 1
@@ -18,13 +18,14 @@ class MyCircularQueue:
         return True
 
     def deQueue(self) -> bool:
-        if self.available == self.maxLen:
+        if self.isEmpty():
             return False
         position = self.front 
         self.front = (self.front +1) % self.maxLen
         self.available += 1
+        self.queue[position] = -1
         
-        return self.queue[position]
+        return True
         
 
     def Front(self) -> int:
@@ -36,8 +37,7 @@ class MyCircularQueue:
         
 
     def isEmpty(self) -> bool:
-        return self.available < self.maxLen
-        
+        return self.available == self.maxLen        
         
         
 
